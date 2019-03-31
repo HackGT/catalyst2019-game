@@ -4,13 +4,24 @@ const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
 const port = process.env.PORT || 3000
-const frequency = 2 * 1000
+const frequency = 1.5 * 1000
 const displayRoom = 'displayRoom'
 
 app.use(express.static('public'))
 server.listen(port);
 
 // make some action map
+var voteMap = {}
+function initializeMap() {
+    voteMap = {
+        up: 0,
+        down: 0,
+        left: 0,
+        right: 0
+    }
+}
+initializeMap()
+
 
 console.log("Server running at localhost:" + port)
 
@@ -26,6 +37,12 @@ io.on('connection', function(socket) {
     })
 
     socket.on('command', function(data) {
+        var direction = data.direction
+        console.log(data.direction)
+        if (direction in voteMap) {
+            voteMap[direction]++
+        }
+
         // handle command sent from client
         // ensure they can't spam commands, both on frontend and backend
         // note, you can manage the state of a given client by
@@ -34,14 +51,28 @@ io.on('connection', function(socket) {
     })
 })
 
+
+function findMode() {
+    var modeKey = "left"
+    var totalVote = 0
+    for (var key in voteMap) {
+        totalVote += voteMap[key]
+        if (voteMap[key] > voteMap[modeKey]) {
+            modeKey = key
+        }
+    }
+    return (totalVote == 0) ? null : modeKey
+}
 function executeModeAction() {
     // todo, get mode action
     // also clear mode action
-
-    io.to(displayRoom).emit('displayUpdate', {
-        /* data here */
-    })
-
+    var mode = findMode()
+    if (mode != null) {
+        io.to(displayRoom).emit('displayUpdate', {
+            /* data here */
+            direction: mode
+        })
+    }
     io.emit('resetTurn')
 }
 
