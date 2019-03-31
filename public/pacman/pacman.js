@@ -30,6 +30,7 @@ Pacman.Ghost = function (game, map, colour) {
         eatable   = null,
         eaten     = null,
         due       = null;
+        movementCounter = 0
 
     function getNewCoord(dir, current) {
 
@@ -217,6 +218,15 @@ Pacman.Ghost = function (game, map, colour) {
     };
 
     function move(ctx) {
+        movementCounter++
+        if (movementCounter % 5 === 0) {
+            return {
+            "new" : position,
+            "old" : position
+        }
+        }
+
+
 
         var oldPos = position,
             onGrid = onGridSquare(position),
@@ -937,6 +947,7 @@ var PACMAN = (function () {
         for (i = 0, len = ghosts.length; i < len; i += 1) {
             ghosts[i].draw(ctx);
         }
+
         user.draw(ctx);
 
         userPos = u["new"];
@@ -976,7 +987,7 @@ var PACMAN = (function () {
         } else if (state === WAITING && stateChanged) {
             stateChanged = false;
             map.draw(ctx);
-            dialog("Press N to start a New game");
+            dialog("Press N for new game");
         } else if (state === EATEN_PAUSE &&
                    (tick - timerStart) > (Pacman.FPS / 3)) {
             map.draw(ctx);

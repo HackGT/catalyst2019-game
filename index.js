@@ -38,7 +38,6 @@ io.on('connection', function(socket) {
 
     socket.on('command', function(data) {
         var direction = data.direction
-        console.log(data.direction)
         if (direction in voteMap) {
             voteMap[direction]++
         }
@@ -68,6 +67,7 @@ function executeModeAction() {
     // also clear mode action
     var mode = findMode()
     if (mode != null) {
+        initializeMap()
         io.to(displayRoom).emit('displayUpdate', {
             /* data here */
             direction: mode

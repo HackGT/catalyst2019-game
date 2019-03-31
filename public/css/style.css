@@ -7,7 +7,7 @@ body {
 
  @font-face {
     font-family: 'BDCartoonShoutRegular';
-    src: url('BD_Cartoon_Shout-webfont.ttf') format('truetype');
+    src: url('PressStart2P.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -22,6 +22,9 @@ h1 {
     display: block;
 }
 [class*="push"] {
+    font-family: 'BDCartoonShoutRegular';
+    color: white;
+
   position: relative;
   display: inline-block;
   width: 240px;
@@ -33,6 +36,7 @@ h1 {
   border-radius: 50%;
   cursor: pointer;
   transition: box-shadow 200ms;
+  font-size: 1.25em;
 }
 
 .push--flat {
