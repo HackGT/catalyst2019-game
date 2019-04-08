@@ -4,6 +4,8 @@ body {
     text-align: center;
     text-transform: uppercase;
     background-color:#1a1a1a;
+    font-family: 'BDCartoonShoutRegular';
+    color:white;
 }
 
  @font-face {
@@ -12,31 +14,39 @@ body {
     font-weight: normal;
     font-style: normal;
 }
-h1 {
-    font-family: 'BDCartoonShoutRegular';
-    color:white;
-}
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 80%;
+    margin-top: 4em;
 
 }
-.up {
-    grid-column: 3/4;
-    grid-row: 2/3;
+#up {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    top: 100%;
+    transform: translateY(-100%);
 }
-.left {
-    grid-column: 2/3;
-    grid-row: 3/4;
+#left {
+    grid-column: 1;
+    grid-row: 2;
+    margin-right: 0;
 }
-.right {
-    grid-column: 4/5;
-    grid-row: 3/4;
+#right {
+    grid-column: 3;
+    grid-row: 2;
+    margin-left: 0;
 }
-.down {
-    grid-column: 3/4;
-    grid-row: 4/5;
+#down {
+    grid-column: 2;
+    grid-row: 3;
+}
+#left, #right {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .columns {
     display: grid;
@@ -46,44 +56,30 @@ h1 {
 }
 .marginRight {
 }
-[class*="push"] {
-    font-family: 'BDCartoonShoutRegular';
-    color: white;
-    position: relative;
-    display: inline-block;
-    width: 240px;
-    height: 240px;
-    border: 0;
-    margin: 1em;
-    outline: none;
-    background-color: #c2290a;
-    border-radius: 50%;
+.button {
+    width: 8em;
+    height: 8em;
+    background-color: red;
+    border-radius: 8em;
+    border: solid darkred 0.5em;
     cursor: pointer;
-    transition: box-shadow 200ms;
-    font-size: 1.25em;
+    margin: 0 auto;
+    transition: 0.125s all;
 }
 
-.push--flat {
-    box-shadow: inset 0 7.5px 0 #da2e0b, inset 0 -7.5px 0 #aa2409, inset 0 0 0 7.5px #b32609, inset 0 0 0 20px #c2290a, inset 0 0 0 24px #611405, inset 0 0 0 26.0869565217px black, inset 0 0 0 32px rgba(247, 133, 110, 0.7), inset 0 0 0 43.6363636364px #c2290a, inset 0 96px 32px #aa2409, inset 0 0 24px 40px #911f08, 0 12px 0 rgba(0, 0, 0, 0.3);
+.button div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.push--flat:after {
-    content: '';
-    position: absolute;
-    bottom: 12px;
-    left: 24px;
-    display: block;
-    width: 192px;
-    height: 192px;
-    border: 16px solid rgba(0, 0, 0, 0.3);
-    border-width: 0 0 16px;
-    border-radius: 50%;
-    transition-duration: 200ms;
+
+.button:hover, .button:active, .button:focus {
+    filter: brightness(90%);
+    transform: scale(1.1);
 }
-.push--flat:active, .push--flat.is-pushed {
-    box-shadow: inset 0 7.5px 0 #da2e0b, inset 0 -7.5px 0 #aa2409, inset 0 0 0 7.5px #b32609, inset 0 0 0 20px #c2290a, inset 0 0 0 24px #611405, inset 0 0 0 28.2352941176px black, inset 0 0 0 32px rgba(247, 133, 110, 0.2), inset 0 0 0 43.6363636364px #b32609, inset 0 96px 32px #9b2108, inset 0 0 24px 40px #791a06, 0 12px 0 rgba(0, 0, 0, 0.3);
-    background-color: #b8270a;
-}
-.push--flat:active:after, .push--flat.is-pushed:after {
-    bottom: 28px;
-    border-width: 0;
+
+@media only screen and (max-width: 500px) {
+    .grid {
+        font-size: 0.8em;
+    }
 }

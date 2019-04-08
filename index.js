@@ -12,6 +12,7 @@ server.listen(port);
 
 // make some action map
 var voteMap = {}
+var count = 0
 function initializeMap() {
     voteMap = {
         up: 0,
@@ -28,6 +29,7 @@ console.log("Server running at localhost:" + port)
 // function called whenever a new client connects – socket refers to the
 // individual that has connected
 io.on('connection', function(socket) {
+    console.log('new connect')
     // let the client know we're ready for them
     socket.emit('ready')
 
@@ -37,9 +39,15 @@ io.on('connection', function(socket) {
     })
 
     socket.on('command', function(data) {
+        console.log(data)
         var direction = data.direction
+        console.log(direction)
         if (direction in voteMap) {
             voteMap[direction]++
+            count++
+        }
+        if (count == 5) {
+            executeModeAction()
         }
 
         // handle command sent from client
@@ -66,6 +74,7 @@ function executeModeAction() {
     // todo, get mode action
     // also clear mode action
     var mode = findMode()
+    count = 0
     if (mode != null) {
         initializeMap()
         io.to(displayRoom).emit('displayUpdate', {
@@ -76,4 +85,4 @@ function executeModeAction() {
     io.emit('resetTurn')
 }
 
-setInterval(executeModeAction, frequency)
+// setInterval(executeModeAction, frequency)

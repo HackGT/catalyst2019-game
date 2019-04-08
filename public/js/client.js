@@ -1,5 +1,5 @@
 var socket = io()
-var buttons = document.getElementsByTagName('button')
+var buttons = document.getElementsByClassName('button')
 for (var i = 0; i <buttons.length; i++) {
     buttons[i].onclick = vote
 }

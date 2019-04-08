@@ -18,19 +18,28 @@
         height:450px;
         width:342px;
         margin:20px auto;
+        transform: scale(1);
+        /*play around with this*/
+        image-rendering: pixelated;
       }
       #shim {
         font-family: BDCartoonShoutRegular;
         position:absolute;
         visibility:hidden
       }
-      /*experimental shit*/
+      /*experimental*/
 /*      .columns {
         display: grid;
         grid-template-columns: 25% 50% 25%;
       }
       .marginLeft {
         grid-column: ;
+      }*/
+/*      .container {
+        display: flex;
+      }
+      .marginLeft {
+        flex: none;
       }*/
       h1 { font-family: BDCartoonShoutRegular; text-align:center; }
       body { width:342px; margin:0px auto; font-family:sans-serif; }
@@ -47,9 +56,11 @@
 
 <!--   <a href="http://arandomurl.com/">Writeup</a> |
   Code on <a href="http://arandomurl.com/">Github</a> -->
-  <!-- also experimental shit -->
-<!--   <div class="marginLeft"><img  src="../assets/marginLeft.svg"></div> -->
-  <div id="pacman"></div>
+  <!-- also experimental -->
+<!--   <div class="container">
+    <div class="marginLeft"><img  src="../assets/marginLeft.svg"></div> -->
+    <div id="pacman"></div>
+<!-- </div> -->
   <script src="pacman.js"></script>
   <script src="modernizr-1.5.min.js"></script>
   <script>
