@@ -2,9 +2,9 @@
   "name": "catalyst2019-game",
   "version": "1.0.0",
   "description": "",
-  "main": "sockets.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node sockets.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
